@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="HibernateExample" basedir="." default="db.run.server">
+	
+	<property name="M2_HOME" location="/Users/adurmaz"/>
+
+	<path id="build.classpath">
+		<fileset dir="${M2_HOME}/.m2/repository/com/h2database/h2/1.3.170/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="db.run.server" description="Start H2 DB Server">
+		<java classname="org.h2.tools.Console" fork="yes" classpathref="build.classpath" failonerror="true">
+		</java>
+	</target>
+</project>
