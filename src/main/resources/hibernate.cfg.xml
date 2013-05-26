@@ -15,6 +15,9 @@
         <mapping class="com.gg.examples.HibernateExample.model.Owner" />
         <mapping class="com.gg.examples.HibernateExample.model.Visit" />
         <mapping class="com.gg.examples.HibernateExample.model.Pet" />
+        <mapping class="com.gg.examples.HibernateExample.model.PetType" />
+        <mapping class="com.gg.examples.HibernateExample.model.Specialty" />
+        <mapping class="com.gg.examples.HibernateExample.model.Vet" />
 
     </session-factory>
 </hibernate-configuration>

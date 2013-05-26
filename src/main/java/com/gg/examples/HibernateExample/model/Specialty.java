@@ -5,7 +5,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import javax.persistence.Entity;
 
+
+@Entity
 public class Specialty extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
