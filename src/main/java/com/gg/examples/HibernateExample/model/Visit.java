@@ -7,10 +7,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Visit extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	private String description;

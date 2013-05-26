@@ -19,6 +19,7 @@ public class Foo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Lob // Clob bir alana karşılık gelmesi için
     @Column(name="C_NAME")
     private String name;
 

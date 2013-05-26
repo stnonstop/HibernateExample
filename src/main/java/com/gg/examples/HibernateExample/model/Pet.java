@@ -12,22 +12,29 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-
+@Entity
 public class Pet extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
 	private String name;
-	
+
+    @Temporal(TemporalType.DATE)
 	private Date birthDate;
 
 	private PetType type;
 
 	private Owner owner;
 
+    @Transient
 	private List<Visit> visits = new ArrayList<Visit>();
-	
+
+    @Transient
 	private Map<String,Image> imagesByName = new HashMap<String, Image>();
 
 	

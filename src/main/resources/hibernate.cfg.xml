@@ -10,6 +10,11 @@
         <property name="hibernate.use_sql_comments">true</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <property name="hibernate.cache.use_query_cache">false</property>
+
         <mapping class="com.gg.examples.HibernateExample.model.Foo" />
+        <mapping class="com.gg.examples.HibernateExample.model.Owner" />
+        <mapping class="com.gg.examples.HibernateExample.model.Visit" />
+        <mapping class="com.gg.examples.HibernateExample.model.Pet" />
+
     </session-factory>
 </hibernate-configuration>
