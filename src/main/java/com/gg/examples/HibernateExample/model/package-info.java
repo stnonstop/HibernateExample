@@ -1,0 +1,1 @@
+package com.gg.examples.HibernateExample.model;
