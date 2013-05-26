@@ -1,6 +1,8 @@
 package com.gg.examples.HibernateExample.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,11 +16,13 @@ public class Owner extends Person {
 	
 	private Address address = new Address(this);
 
-    @Transient
+    @OneToMany
+    @JoinColumn(name = "PETS_OWNER_ID")
 	private Set<Pet> pets = new HashSet<Pet>();
 	
 	public Set<Pet> getPets() {
-		return Collections.unmodifiableSet(pets);
+		//return Collections.unmodifiableSet(pets);
+        return pets;
 	}
 	
 	public void addPet(Pet pet) {

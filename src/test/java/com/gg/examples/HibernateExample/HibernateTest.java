@@ -2,6 +2,8 @@ package com.gg.examples.HibernateExample;
 
 import com.gg.examples.HibernateExample.dao.HibernateUtils;
 import com.gg.examples.HibernateExample.model.Foo;
+import com.gg.examples.HibernateExample.model.Owner;
+import com.gg.examples.HibernateExample.model.Pet;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -25,4 +27,24 @@ public class HibernateTest {
         session.close();
     }
 
+    @Test
+    public void testOneToManyBidirectional(){
+        Owner owner = new Owner();
+        Owner owner1 = new Owner();
+
+        Pet pet = new Pet();
+
+        Session session = HibernateUtils.getSessionFactory().openSession();
+
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        session.save(owner);
+        session.save(owner1);
+        session.save(pet);
+
+        owner1.getPets().add(pet);
+        pet.setOwner(owner);
+
+        transaction.commit();
+    }
 }
