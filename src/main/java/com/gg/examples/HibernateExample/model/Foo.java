@@ -1,19 +1,29 @@
 package com.gg.examples.HibernateExample.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * User: adurmaz
  * Date: 5/26/13
  * Time: 11:41 AM
  */
-@Entity
+@Entity(name = "Foo")
+@Table(name = "T_FOO")
 public class Foo {
 
-    private String name;
+    /*
+    * Hibernate tin access stratejisi Id annatasyonunun yeri field
+    * üzerinde mi yoksa method üzerinde mi ona göre belirliyor.
+    * */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name="C_NAME")
+    private String name;
+
+    @Embedded
+    private Bar bar;
 
     public String getName() {
         return name;
@@ -29,5 +39,13 @@ public class Foo {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
     }
 }

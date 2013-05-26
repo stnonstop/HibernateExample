@@ -19,8 +19,7 @@ public class HibernateTest {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         Foo foo = new Foo();
-        foo.setId(1);
-        foo.setName("xxx");
+        foo.setName("xx1");
         session.save(foo);
         transaction.commit();
         session.close();
