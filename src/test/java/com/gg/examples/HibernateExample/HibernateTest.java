@@ -4,6 +4,7 @@ import com.gg.examples.HibernateExample.dao.HibernateUtils;
 import com.gg.examples.HibernateExample.model.Foo;
 import com.gg.examples.HibernateExample.model.Owner;
 import com.gg.examples.HibernateExample.model.Pet;
+import com.gg.examples.HibernateExample.model.Vet;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -43,6 +44,8 @@ public class HibernateTest {
         session.save(pet);
 
         owner.addPet(pet);
+        Vet vet = new Vet();
+        session.save(vet);
 
         transaction.commit();
     }

@@ -6,6 +6,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.hibernate.annotations.Index;
 
 import javax.persistence.*;
 
@@ -15,6 +16,8 @@ public class Visit extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Index(name = "IDX_VISIT_DATE", columnNames = {"VISIT_DATE"})
+    @Column(name = "VISIT_DATE")
 	private Date date;
 
 	private String description;

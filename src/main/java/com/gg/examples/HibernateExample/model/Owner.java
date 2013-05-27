@@ -1,15 +1,13 @@
 package com.gg.examples.HibernateExample.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name = "OWNER_ID")
 public class Owner extends Person {
 	
 	private static final long serialVersionUID = 1L;

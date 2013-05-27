@@ -1,5 +1,7 @@
 package com.gg.examples.HibernateExample.model;
 
+import org.hibernate.annotations.ForeignKey;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,6 +19,7 @@ public class Vet extends Person {
     @JoinTable(name = "VET_SPECIALTY",
             joinColumns = @JoinColumn(name = "VET_ID"),
             inverseJoinColumns = @JoinColumn(name = "SPECIALTY_ID"))
+    @ForeignKey(name = "FK_VET_ID", inverseName = "FK_SPEC_ID")
 	private Set<Specialty> specialties = new HashSet<Specialty>();
 
 	public Set<Specialty> getSpecialties() {

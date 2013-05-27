@@ -11,6 +11,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class Pet extends BaseEntity {
 	private Date birthDate;
 
     @ManyToOne
+    @ForeignKey(name = "FK_PET_TYPE")
 	private PetType type;
 
     @ManyToOne
