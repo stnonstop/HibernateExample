@@ -1,17 +1,21 @@
 package com.gg.examples.HibernateExample.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import javax.persistence.Entity;
-
 @Entity
+@Table(name="types")
 public class PetType extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name="name")
 	private String name;
 
 	public String getName() {

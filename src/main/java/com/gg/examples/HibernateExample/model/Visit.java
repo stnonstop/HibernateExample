@@ -2,30 +2,40 @@ package com.gg.examples.HibernateExample.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.Index;
 
-import javax.persistence.*;
-
 @Entity
+@Table(name="visits")
+@org.hibernate.annotations.Table(indexes={@Index(name="visit_date_idx",columnNames={"visit_date"})}, appliesTo = "visits")
 public class Visit extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Index(name = "IDX_VISIT_DATE", columnNames = {"VISIT_DATE"})
-    @Column(name = "VISIT_DATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="visit_date")
 	private Date date;
 
+	@Column(name="description")
 	private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "PET_ID", insertable = false, updatable = false)
+	@ManyToOne
+	@JoinColumn(name="pet_id",insertable=false,updatable=false,nullable=false)
 	private Pet pet;
 
+	@Column(name="checkup")
 	private Boolean checkup = false;
 
 	public Date getDate() {

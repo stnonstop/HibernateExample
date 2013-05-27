@@ -1,19 +1,22 @@
 package com.gg.examples.HibernateExample.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 @Embeddable
 public class Image implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-
-    @Column(name = "FILENAME")
+	
+	@Column(name="filename")
 	private String filename;
-
+	
+	@Column(name="width")
 	private int width;
-
+	
+	@Column(name="height")
 	private int height;
 	
 	public String getFilename() {

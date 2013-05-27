@@ -1,23 +1,29 @@
 package com.gg.examples.HibernateExample.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import javax.persistence.*;
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="PERSON", uniqueConstraints = @UniqueConstraint(columnNames = {"FIRSTNAME","LASTNAME"}))
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="persons",uniqueConstraints={@UniqueConstraint(name="person_constraint",columnNames={"FIRST_NAME","LAST_NAME"})})
 public abstract class Person extends BaseEntity implements Auditable {
 	
 	private static final long serialVersionUID = 1L;
 
-    @Column(name = "FIRSTNAME")
+	@Column(name="FIRST_NAME")
 	private String firstName;
 
-    @Column(name = "LASTNAME")
+	@Column(name="LAST_NAME")
 	private String lastName;
 
 	public String getFirstName() {

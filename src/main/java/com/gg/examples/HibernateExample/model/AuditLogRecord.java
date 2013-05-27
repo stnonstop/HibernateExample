@@ -2,6 +2,10 @@ package com.gg.examples.HibernateExample.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class AuditLogRecord extends BaseEntity {

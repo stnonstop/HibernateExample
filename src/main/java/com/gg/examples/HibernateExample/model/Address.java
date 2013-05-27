@@ -2,31 +2,36 @@ package com.gg.examples.HibernateExample.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.Parent;
 
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 @Embeddable
 public class Address implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name="address")
 	private String address;
 
+	@Column(name="city")
 	private String city;
 
+	@Column(name="telephone")
 	private String telephone;
 
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
+	@Column(name="phone_type")
 	private PhoneType phoneType;
-
-    @Parent
+	
+	@Parent
 	private Owner owner;
 	
 	public Address() {
