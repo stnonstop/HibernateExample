@@ -73,12 +73,15 @@ public class HibernateTest {
     @Test
     public void testFetching(){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Pet pet = (Pet)session.get(Pet.class,7l);
+        /*Pet pet = (Pet)session.get(Pet.class,7l);
         System.out.println("before get visits");
-        pet.getVisits().size();
+        PetType petType = pet.getType();
+        petType.getName(); */
 
-        Visit v = new Visit();
-        v.setId(1L);
-        pet.getVisits().contains(v);
+        System.out.println("-----------------------");
+
+        Pet myPet = (Pet) session.createQuery("FROM Pet p WHERE p.id = ? ").setParameter(0,7l).uniqueResult();
+
+
     }
 }
