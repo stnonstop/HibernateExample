@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @PrimaryKeyJoinColumn
 @Table(name="owners")
-public class Owner extends Person {
+public class Owner extends Person implements Auditable {
 	
 	private static final long serialVersionUID = 1L;
 	

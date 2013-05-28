@@ -13,6 +13,7 @@ public class HibernateUtils {
     private  static SessionFactory sessionFactory;
     static {
         AnnotationConfiguration cfg = new AnnotationConfiguration();
+        cfg.setInterceptor(new AuiditLogInterceptor());
         cfg.configure();
         sessionFactory = cfg.buildSessionFactory();
     }

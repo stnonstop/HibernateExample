@@ -3,6 +3,7 @@ package com.gg.examples.HibernateExample;
 import com.gg.examples.HibernateExample.dao.HibernateUtils;
 import com.gg.examples.HibernateExample.dao.PetClinicDaoHibernate;
 import com.gg.examples.HibernateExample.model.*;
+import junit.framework.Assert;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Before;
@@ -158,4 +159,19 @@ public class HibernateTest {
             System.out.println(visit.getPet().getName() + " " + visit.getPet().getType() + " " + visit.getDate() + " " + visit.getDescription());
         }
     }
+
+    @Test
+    public void testConversation(){
+        Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+
+        Session session1 = HibernateUtils.getSessionFactory().getCurrentSession();
+        Assert.assertSame(session, session1);
+
+        session.beginTransaction().commit();
+
+        Session session2 = HibernateUtils.getSessionFactory().getCurrentSession();
+        Assert.assertNotSame(session, session2);
+
+    }
+
 }
