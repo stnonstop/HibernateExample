@@ -70,38 +70,38 @@ public class Pet extends BaseEntity {
 		return this.birthDate;
 	}
 
-	public void setType(PetType type) {
-		this.type = type;
-	}
+    public void setType(PetType type) {
+        this.type = type;
+    }
 
-	public PetType getType() {
-		return this.type;
-	}
+    public PetType getType() {
+        return this.type;
+    }
 
-	protected void setOwner(Owner owner) {
-		this.owner = owner;
-	}
+    protected void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
-	public Owner getOwner() {
-		return this.owner;
-	}
+    public Owner getOwner() {
+        return this.owner;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<Visit> getVisits() {
-		return Collections.unmodifiableList(visits);
-	}
+    @SuppressWarnings("unchecked")
+    public List<Visit> getVisits() {
+        return Collections.unmodifiableList(visits);
+    }
 
-	public void addVisit(Visit visit) {
-		this.visits.add(visit);
-		visit.setPet(this);
-	}
-	
-	public void removeVisit(Visit visit) {
-		this.visits.remove(visit);
-	}
+    public void addVisit(Visit visit) {
+        this.visits.add(visit);
+        visit.setPet(this);
+    }
 
-	@SuppressWarnings("unchecked")
-	public Map<String, Image> getImagesByName() {
+    public void removeVisit(Visit visit) {
+        this.visits.remove(visit);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<String, Image> getImagesByName() {
 		return Collections.unmodifiableMap(imagesByName);
 	}
 	
