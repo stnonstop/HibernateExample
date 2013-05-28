@@ -1,9 +1,9 @@
 package com.gg.examples.HibernateExample.dao;
 
 import com.gg.examples.HibernateExample.model.*;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import java.util.Collection;
 
@@ -15,17 +15,33 @@ import java.util.Collection;
 public class PetClinicDaoHibernate implements PetClinicDao {
     @Override
     public Collection<Vet> getVets() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Collection<Vet> vetCollection = session.createQuery("SELECT DISTINCT v FROM Vet v LEFT JOIN FETCH v.specialties ").list();
+        session.close();
+        return vetCollection;
     }
 
     @Override
     public Collection<Owner> findOwners(String lastName) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Collection<Owner> ownerCollection = session
+                .createQuery("FROM Owner WHERE lastName = :lastName")
+                .setString("lastName", lastName).list();
+        session.close();
+        return ownerCollection;
     }
 
     @Override
     public Collection<Visit> findVisits(long petId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Visit.class)
+                .createAlias("pet", "p").add(Restrictions.eq("p.id",petId))
+                .createAlias("p.type","t", JoinType.LEFT_OUTER_JOIN)
+                .createAlias("p.imagesByName", "i", JoinType.LEFT_OUTER_JOIN)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        Collection<Visit> visitCollection = criteria.list();
+        session.close();
+        return visitCollection;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
