@@ -174,4 +174,29 @@ public class HibernateTest {
 
     }
 
+    @Test
+    public void testCache(){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Session session2 = HibernateUtils.getSessionFactory().openSession();
+
+        Transaction transaction = session.beginTransaction();
+        Transaction transaction2 = session2.beginTransaction();
+
+        session.createQuery("from PetType").setCacheable(true).list();
+        System.out.println("Before Second Query");
+        session2.createQuery("from PetType ").setCacheable(true).list();
+
+        Vet v1 = (Vet)session.get(Vet.class, 3L);
+        v1.getSpecialties().size();
+        System.out.println("Before Second Query");
+        Vet v2 = (Vet)session2.get(Vet.class, 3L);
+        v2.getSpecialties().size();
+
+
+        transaction.commit();
+        transaction2.commit();
+        session.close();
+        session2.close();
+    }
+
 }

@@ -12,6 +12,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
@@ -24,6 +26,7 @@ public class Vet extends Person {
 	@ManyToMany
 	@JoinTable(name="vet_specialties",joinColumns={@JoinColumn(name="vets_id")},inverseJoinColumns={@JoinColumn(name="specialties_id")})
 	@ForeignKey(name="vet_specialty_fk")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private Set<Specialty> specialties = new HashSet<Specialty>();
 
 	public Set<Specialty> getSpecialties() {
